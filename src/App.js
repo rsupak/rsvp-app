@@ -24,17 +24,28 @@ const CounterDisplay = ({onIncrement, onDecrement, score}) => (
 );
 
 const Counter = class extends React.Component {
- constructor(props) {
+  constructor(props) {
     super(props)
-    this.incrementScore = this.incrementScore.bind(this)
     this.state = {
       score: 0
     } //initial counter value
- }
- incrementScore = () => this.setState({score: score + 1})
- render = () => 
-   <CounterDisplay score={this.state} onIncrement={this.incrementScore} onDecrement={this.decrementScore} />
-}
+  }
+
+  incrementScore = () => this.setState({
+    score: this.state.score + 1
+  });
+  
+  decrementScore = () => this.setState({
+    score: this.state.score - 1
+  });
+
+  render() {
+    return (<CounterDisplay score={this.state.score} 
+                            onIncrement={this.incrementScore} 
+                            onDecrement={this.decrementScore} />
+    );
+  }
+};
 
 const Player = props => {
     return (
