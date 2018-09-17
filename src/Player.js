@@ -10,15 +10,19 @@ const Player = props => {
         {props.name}
       </div>
       <div className="player-score">
-        <Counter score={props.score}/>
+        <Counter 
+          score={props.score}
+          onChange={props.onScoreChange} 
+        />
       </div>
     </div>
   )
 }
 
 Player.propTypes = {
-name: PropTypes.string.isRequired,
-score: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  score: PropTypes.number.isRequired,
+  onScoreChange: PropTypes.func.isRequired,
 };
 
 export default Player;

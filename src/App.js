@@ -13,18 +13,28 @@ const App = class extends React.Component {
     }
   }
 
-  getInitialState
+  onScoreChange = (index, delta) => {
+    console.log('onScoreChange', index, delta);
+    this.state.players[index].score += delta;
+    this.setState(this.state);
+  };
+
   render() {
     return (
       <div className="scoreboard">
         <Header title={this.props.title}/>
         <div className="players">
-          {this.state.players.map((player) => {
+          {this.state.players.map((player, index) => {
             return (
-              <Player name={player.name} 
-                      score={player.score} 
-                      key={player.id}/>
-            )
+              <Player 
+                onScoreChange = {(delta) => {
+                  this.onScoreChange(index, delta)
+                }}
+                name={player.name} 
+                score={player.score} 
+                key={player.id}
+              />
+            );
           })}
         </div>
       </div>
